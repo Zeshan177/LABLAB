@@ -1,0 +1,219 @@
+  PACKAGE MODEL;
+CLASS MODEL;
+CLASS STUDENT;
+
+package javaapplication8.Model;
+
+/**
+ *
+ * @author fa22-bse-120
+ */
+
+public class Model {
+    private Student[] students;  
+
+    
+    public Model() {
+        students = new Student[10];  
+    }
+
+    
+    public void addStudent(int index, String name, String registrationNumber, double gpa) {
+        students[index] = new Student(name, registrationNumber, gpa);
+    }
+
+    
+    public Student[] getStudents() {
+        return students;
+    }
+}
+
+CLASS STUDENT
+
+package javaapplication8.Model;
+
+/**
+ *
+ * @author fa22-bse-120
+ */
+
+public class Student {
+    private String name;
+    private String registrationNumber;
+    private double gpa;
+
+   
+    public Student(String name, String registrationNumber, double gpa) {
+        this.name = name;
+        this.registrationNumber = registrationNumber;
+        this.gpa = gpa;
+    }
+
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    public double getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
+    }
+
+    
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Registration: " + registrationNumber + ", GPA: " + gpa;
+    }
+}
+
+PACKAGE VIEW;
+CLASS VIEW;
+
+package javaapplication8.View;
+
+import javaapplication8.Model.Student;
+
+/**
+ *
+ * @author fa22-bse-120
+ */
+
+public class View {
+    
+    public void printStudentDetails(Student[] students) {
+        for (Student student : students) {
+            if (student != null) {
+                System.out.println(student);
+            }
+        }
+    }
+}
+
+
+
+PACKAGE CONTROLLER;
+
+CLASS CONTROLLER;
+
+package javaapplication8.Controller;
+
+import javaapplication8.Model.Model;
+import javaapplication8.Model.Student;
+import javaapplication8.View.View;
+
+/**
+ *
+ * @author fa22-bse-120
+ */
+
+public class Controller {
+    private Model model;
+    private View view;
+
+   
+    public Controller(Model model, View view) {
+        this.model = model;
+        this.view = view;
+    }
+
+    
+    public void addStudentToModel(int index, String name, String registrationNumber, double gpa) {
+        model.addStudent(index, name, registrationNumber, gpa);
+    }
+
+  
+    public Student[] getStudentsFromModel() {
+        return model.getStudents();
+    }
+
+    
+    public void updateView() {
+        view.printStudentDetails(model.getStudents());
+    }
+}
+
+
+MAIN CLASS;
+
+package javaapplication8;
+
+import javaapplication8.Controller.Controller;
+import javaapplication8.Model.Model;
+import javaapplication8.View.View;
+
+/**
+ *
+ * @author fa22-bse-120
+ */
+public class JavaApplication8 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+          Model model = new Model();
+        View view = new View();
+        Controller controller = new Controller(model, view);
+
+        
+        controller.addStudentToModel(0, "Zeshan", "S123", 3.8);
+        controller.addStudentToModel(1, "asjad", "S124", 3.5);
+        controller.addStudentToModel(2, "ashar", "S125", 3.9);
+        controller.addStudentToModel(3, "saif", "S126", 3.2);
+        controller.addStudentToModel(4, "ghazi", "S127", 3.7);
+        controller.addStudentToModel(5, "hadsi", "S128", 3.4);
+        controller.addStudentToModel(6, "shahzeb", "S129", 3.6);
+        controller.addStudentToModel(7, "farazt", "S130", 3.8);
+        controller.addStudentToModel(8, "ali", "S131", 3.1);
+        controller.addStudentToModel(9, "shayan", "S132", 3.7);
+
+        
+        controller.updateView();
+    }
+}
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
